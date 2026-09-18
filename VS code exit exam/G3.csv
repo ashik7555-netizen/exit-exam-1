@@ -1,0 +1,3 @@
+import pandas as pd
+
+df = pd.read_csv(r"C:\Users\LAB-USER-01\Documents\VS code exit exam\G3.csv")

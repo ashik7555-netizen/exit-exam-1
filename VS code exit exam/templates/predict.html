@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediction Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar">
+        <div class="logo">RevenueAI</div>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li>Prediction</li>
+        </ul>
+      </nav>
+
+      <div class="hero-content">
+        <p class="eyebrow">Prediction</p>
+        <h1>Enterprise Revenue Forecast</h1>
+        <p class="subtitle">Enter company details to estimate annual revenue.</p>
+      </div>
+    </header>
+
+    <main class="predict-page">
+      <form method="POST" action="/result">
+        <div class="form-grid">
+          <div class="field-group">
+            <label for="company_name">Company Name</label>
+            <input type="text" id="company_name" name="company_name" placeholder="Example: Acme Corp" />
+          </div>
+
+          <div class="field-group">
+            <label for="company_type">Company Type</label>
+            <select id="company_type" name="company_type">
+              <option value="Private">Private</option>
+              <option value="Public">Public</option>
+              <option value="Startup">Startup</option>
+              <option value="Nonprofit">Nonprofit</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="employees">Employees</label>
+            <input type="number" id="employees" name="employees" value="250" min="0" />
+          </div>
+
+          <div class="field-group">
+            <label for="market_cap">Market Cap</label>
+            <input type="number" id="market_cap" name="market_cap" value="5000000" min="0" />
+          </div>
+
+          <div class="field-group">
+            <label for="revenue">Revenue</label>
+            <input type="number" id="revenue" name="revenue" value="1200000" min="0" />
+          </div>
+
+          <div class="field-group">
+            <label for="net_income">Net Income</label>
+            <input type="number" id="net_income" name="net_income" value="250000" min="0" />
+          </div>
+
+          <div class="field-group">
+            <label for="legal_units_count">Legal Units Count</label>
+            <input type="number" id="legal_units_count" name="legal_units_count" value="3" min="0" />
+          </div>
+
+          <div class="field-group">
+            <label for="direct_subsidiaries_count">Subsidiaries</label>
+            <input type="number" id="direct_subsidiaries_count" name="direct_subsidiaries_count" value="2" min="0" />
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Predict Revenue</button>
+      </form>
+
+      {% if result %}
+      <div class="result-box">
+        <h3>Prediction Result</h3>
+        <p><strong>Estimated Revenue:</strong> ${{ "%.2f" % result[0] }}</p>
+        <p>{{ result[1] }}</p>
+      </div>
+      {% endif %}
+    </main>
+  </body>
+</html>

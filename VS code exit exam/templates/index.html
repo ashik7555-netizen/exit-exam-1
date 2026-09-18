@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ project.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar">
+        <div class="logo">RevenueAI</div>
+        <ul>
+          <li>Overview</li>
+          <li>Features</li>
+          <li>Dataset</li>
+        </ul>
+      </nav>
+
+      <div class="hero-content">
+        <p class="eyebrow">Project Overview</p>
+        <h1>{{ project.title }}</h1>
+        <p class="subtitle">{{ project.subtitle }}</p>
+        <div class="hero-actions">
+          <a href="#overview" class="cta">Explore Project</a>
+          <a href="/predict" class="cta secondary">Make Prediction</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="overview" class="section">
+        <div class="container two-column">
+          <div>
+            <p class="section-tag">Overview</p>
+            <h2>What this project does</h2>
+          </div>
+          <p>
+            {{ project.overview }}
+          </p>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="container">
+          <p class="section-tag">Objectives</p>
+          <h2>Key project goals</h2>
+          <div class="card-grid">
+            {% for goal in project.goals %}
+            <div class="card">
+              <h3>{{ loop.index }}</h3>
+              <p>{{ goal }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <p class="section-tag">Core Features</p>
+          <h2>System capabilities</h2>
+          <ul class="feature-list">
+            {% for feature in project.features %}
+            <li>{{ feature }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="container">
+          <p class="section-tag">Dataset</p>
+          <h2>Input source</h2>
+          <p>{{ project.dataset }}</p>
+          <div class="status-box">
+            <strong>Status:</strong> {{ project.status }}
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar">
+        <div class="logo">RevenueAI</div>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/predict">Prediction</a></li>
+        </ul>
+      </nav>
+
+      <div class="hero-content">
+        <p class="eyebrow">Result</p>
+        <h1>Predicted Revenue</h1>
+        <p class="subtitle">The estimated revenue for the provided enterprise details.</p>
+      </div>
+    </header>
+
+    <main class="predict-page">
+      <div class="result-box large">
+        <h3>Estimated Revenue</h3>
+        <div class="revenue-value">${{ "%.2f" % result[0] }}</div>
+        <p>{{ result[1] }}</p>
+      </div>
+
+      <div class="actions-row">
+        <a href="/predict" class="cta">Back to Form</a>
+        <a href="/" class="cta secondary dark">Home</a>
+      </div>
+    </main>
+  </body>
+</html>
